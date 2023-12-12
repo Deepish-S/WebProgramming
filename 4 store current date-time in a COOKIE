@@ -1,4 +1,4 @@
-5) Write a PHP program to store current date-time in a COOKIE and display the ‘Last
+4) Write a PHP program to store current date-time in a COOKIE and display the ‘Last
 visited on’ date-time on the web page upon reopening of the same page.
 <?php
 date_default_timezone_set('Asia/Kolkata');

@@ -1,0 +1,44 @@
+<html>
+  <body>
+   <form method="post" enctype="multipart/form-data">
+   <label>select image:</label>
+   <input type="file" name="image">
+   <input type="submit" name="submit" value="upload">
+</form>
+</body>
+</html>
+<?php
+if(isset($_POST["submit"])) {
+$conn = new mysqli('localhost','root','','web');
+   if(!$conn){
+       echo "connection error";
+   }else {
+    $image = $_FILES['image']['name'];
+    $temp_name = $_FILES['image']['tmp_name'];
+
+    $q1="insert into img_table (image_name, time)    VALUES('$image',NOW())";
+            $insert = $conn->query($q1);
+            if($insert) {
+               echo"Files uploaded successfully!";
+            } 
+               else {
+               echo"File uplaod failed!!!";
+           }
+
+         if(move_uploaded_file($temp_name,"uploads/$image")) {
+                   echo"<br /> Copied  <br/>";
+        }
+        $q2="select image_name from img_table order by id desc";
+        $result = $conn->query($q2);
+        if($result->num_rows > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+               ?>
+           <div>
+              <img src="uploads/<?= $row['image_name'] 
+?>">
+          </div>
+       <?php
+      }
+     }
+    }
+ }

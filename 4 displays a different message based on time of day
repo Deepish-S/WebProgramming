@@ -1,0 +1,18 @@
+4) Write a PHP program that displays a different message based on time of day. For
+example, a page should display “Good Morning” if it is accessed in the morning.
+<?php
+date_default_timezone_set('Asia/Kolkata');
+$ti = date("G");
+if($ti >= 5 && $ti < 12)
+echo "Good Morning";
+else if($ti > 12 && $ti < 15)
+echo "Good Afternoon";
+else if($ti >= 16 && $ti < 21)
+echo "Good Evening";
+else
+echo "Good Night";
+echo "<br />Time (in 24hr format): $ti";
+?>
+Output:
+Good Morning
+Time (in 24hr format): 10

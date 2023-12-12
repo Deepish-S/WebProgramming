@@ -1,0 +1,15 @@
+<?php
+    $sum=0;
+     for($n=2 ;$n<100; $n++)
+     { 
+		for($i=2; $i<$n; $i++)
+                {
+                     $rem=$n % $i;
+                     if($rem==0)
+			     break;
+                 }
+                  if($i==$n)
+                     $sum=$sum+$n;
+     }
+     echo "sum=$sum";
+?>

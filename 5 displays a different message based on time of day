@@ -1,4 +1,4 @@
-4) Write a PHP program that displays a different message based on time of day. For
+5) Write a PHP program that displays a different message based on time of day. For
 example, a page should display “Good Morning” if it is accessed in the morning.
 <?php
 date_default_timezone_set('Asia/Kolkata');

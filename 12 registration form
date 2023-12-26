@@ -1,0 +1,46 @@
+<html>
+<body>
+<form method="post" action ="">
+Name <input type='text' name='name'> <br />
+Password <input type='password' name='pass'> <br />
+Email <input type='text' name='email'> <br />
+Country <select name = 'country'>
+<option>India</option>
+<option>Turkey</option>
+</select><br />
+<input type='submit' name='submit'>
+</form>
+</body>
+</html>
+<?php
+if(isset($_POST['submit']))
+{
+$n = $_POST['name'];
+$e = $_POST['email'];
+$c = $_POST['country'];
+echo "Data Entered - <br />Name : $n<br /> Email : $e<br/ > Country : $c<br
+/>";
+$conn = new mysqli('localhost', 'root', '','sample');
+if($conn)
+echo "MySQL is connected<br/>";
+else
+echo "Error!!";
+$q1 = "insert into person values('$n', '$e', '$c');";
+if($conn -> query($q1))
+echo "Row Inserted <br />";
+else
+echo "Insertion error! ";
+$q2 = "SELECT * FROM person WHERE Email = '$e'; ";
+$result = $conn->query($q2);
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+echo "Data Fetched - <br />Name: " . $row["Name"].
+"<br /> Email : " . $row["Email"].
+"<br /> Country : " . $row["Country"]. "<br>";
+}
+}
+else {
+echo "0 results";
+}
+}
+?>

@@ -1,0 +1,51 @@
+<html>
+<body>
+<form method="post"action="">
+Accession Number <input type="text"name="an"><br>
+Title <input type="text"name="ti"><br>
+Author <input type="text"name="au"><br>
+Edition <input type="text"name="ed"><br><br/>
+Publisher <input type="text"name="pub"<br>
+<input type="submit"name="sub" value="Insert Data"><br>
+Enter book title to search<input type="text" name="s"><br/>
+<input type="submit" name="ser" value="Search"><br/>
+</form>
+</body>
+</html>
+<?php
+$conn = new mysqli('localhost','root','','sample');
+if(!$conn)
+echo "DB connection error";
+if(isset($_POST["sub"]))
+{
+$acc=$_POST['an'];
+$title=$_POST['ti'];
+$author=$_POST['au'];
+$edition=$_POST['ed'];
+$publisher=$_POST['pub'];
+$q1="insert into bookinfo values('$acc','$title','$author','$edition','$publisher')";
+if($conn->query($q1))
+echo"row inserted";
+else
+echo"error";
+}
+if(isset($_POST["ser"]))
+{
+$s=$_POST['s'];
+$q2="select * from bookinfo where Title='$s'";
+$result=$conn->query($q2);
+if($result->num_rows>0)
+{
+while($row=mysqli_fetch_assoc($result))
+{
+echo "Accession Number: ".$row['AccNo']."<br><br/>";
+echo "Title: ".$row['Title']."<br><br/>";
+echo "Author: ".$row['Author']."<br><br/>";
+echo "Edition: ".$row['Edition']."<br><br/>";
+echo "Publisher: ".$row['Publisher']."<br><br/>";
+}
+}
+else
+echo "no records";
+}
+?>

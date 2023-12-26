@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>HTML Form</title>
+</head>
+<body>
+<form method= "post" action= "">
+Name <input type="text" name="name"> <br />
+Email <input type="text" name="email"> <br />
+<label>Reg No</label>
+<input type="text" name="regno"> <br />
+<label>Password</label>
+<input type="password" name="pass"> <br />
+<label>Mobile</label>
+<input type="text" name="mobile"> <br />
+<label>Course</label>
+<input type="radio" name="course" value="BCA"> BCA
+<input type="radio" name="course" value="BCOM"> BCOM
+<input type="radio" name="course" value="BBA"> BBA <br />
+<label>Gender</label>
+<input type="radio" name="gender" value="Male"> Male
+<input type="radio" name="gender" value="Female"> Female <br />
+<label>State</label>
+<select name="state">
+<option>West Bengal</option>
+<option>Karnataka</option>
+</select> <br />
+<label>Country</label>
+<select name="country">
+<option>India</option>
+<option>Turkey</option>
+</select> <br />
+<label>Address</label>
+<textarea rows="5" cols="50" name="address"></textarea> <br />
+<label>DOB</label>
+<input type="date" name="dob"> <br />
+<label>Language</label>
+<input type="checkbox" name="language[]" value="Bangla">Bangla
+<input type="checkbox" name="language[]" value="Tamil">Tamil
+<input type="checkbox" name="language[]" value="Kannada">Kannada <br />
+<input type="checkbox">
+<label>Terms & Conditions</label> <br />
+<input type="Submit" name="submit">
+<input type="reset">
+</form> <br />
+</body>
+</html>
+<?php
+if(isset($_POST['submit'])){
+$n=$_POST['name'];
+echo "Name = $n <br />";
+$email = $_POST['email'];
+echo "Your email address is : $email <br />";
+$rno = $_POST['regno'];
+echo "Your register no is : $rno <br />";
+$mobile = $_POST['mobile'];
+echo "Your mobile no is : $mobile <br />";
+$course = $_POST['course'];
+echo "You chose course as : $course <br />";
+$state = $_POST['state'];
+echo "You chose state as : $state <br />";
+$gender = $_POST['gender'];
+echo "Your gender is : $gender <br />";
+$country = $_POST['country'];
+echo "You chose country as : $country <br />";
+$address = $_POST['address'];
+echo "Your address is : $address <br />";
+$dob = $_POST['dob'];
+echo "Your date of birth is : $dob <br />";
+$lang = $_POST['language'];
+foreach($lang as $l)
+echo "Language : $l<br />";
+}
+?>

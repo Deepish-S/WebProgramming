@@ -1,0 +1,54 @@
+<html>
+<body>
+<h1>Student Information </h1>
+<form method= "post" action= "">
+Name <input type="text" name="name"> <br />
+Email <input type="text" name="email"> <br />
+Reg No <input type="text" name="regno"> <br />
+Password <input type="password" name="pass"> <br />
+Mobile<input type="text" name="mobile"> <br />
+Course <input type="radio" name="course" value="BCA"> BCA
+<input type="radio" name="course" value="BCOM"> BCOM
+<input type="radio" name="course" value="BBA"> BBA <br />
+Gender<input type="radio" name="gender" value="Male"> Male
+<input type="radio" name="gender" value="Female"> Female <br />
+Address <textarea rows="5" cols="50" name="address"></textarea> <br />
+State <select name="state">
+<option>West Bengal</option>
+<option>Karnataka</option>
+</select> <br />
+Country <select name="country">
+<option>India</option>
+<option>Turkey</option>
+</select> <br />
+DOB <input type="date" name="dob"> <br />
+<input type="Submit" name="submit">
+<input type="reset">
+</form> <br />
+</body>
+</html>
+<?php
+if(isset($_POST['submit'])){
+$n=$_POST['name'];
+$email = $_POST['email'];
+$rno = $_POST['regno'];
+$mobile = $_POST['mobile'];
+$course = $_POST['course'];
+$gender = $_POST['gender'];
+$address = $_POST['address'];
+$state = $_POST['state'];
+$country = $_POST['country'];
+$dob = $_POST['dob'];
+$conn= new mysqli('localhost', 'root', '', 'sample');
+if($conn)
+echo "MySQL is connected <br />";
+else
+echo "Error!";
+$q1= "insert into process values('$n', '$email', '$rno', '$mobile', '$course',
+'$gender', '$address', '$state', '$country', '$dob');";
+if($conn -> query($q1))
+echo "Row Inserted";
+else
+echo "Insertion error";
+}
+?>

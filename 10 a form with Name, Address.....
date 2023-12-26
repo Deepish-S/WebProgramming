@@ -1,0 +1,51 @@
+Create a form with Name, Address Line 1, Address Line 2, and E-mail text fields. On
+submitting, store the values in MySQL table. Retrieve and display the data based on
+Name.
+<html>
+<body>
+<form method="post" action ="">
+Name <input type='text' name='name'> <br />
+Address Line 1 <textarea rows=5 cols=20 name="add1"> </textarea> <br>
+Address Line 2 <textarea rows=5 cols=20 name="add2"> </textarea> <br>
+Email <input type='text' name='email'> <br />
+<input type='submit' name='submit'><br>
+Enter name to search :<input type='text' name='name2'>
+<input type='submit' name='search' value="Search">
+</form>
+</body>
+</html>
+<?php
+$conn = new mysqli('localhost', 'root', '','sample');
+if(isset($_POST['submit']))
+{
+$n = $_POST['name'];
+$e = $_POST['email'];
+$c = $_POST['add1'];
+$d = $_POST['add2'];
+if($conn)
+echo "MySQL is connected<br/>";
+else
+echo "Error! ";
+$q1 = "insert into addr values('$n', '$e', '$c', '$d');";
+if($conn -> query($q1))
+echo "Row Inserted!<br /><br /><br />";
+else
+echo "Insertion error! ";
+}
+if(isset($_POST['search']))
+{
+$n2 = $_POST['name2'];
+$q2 = "SELECT * FROM addr WHERE Name = '$n2';";
+$result = $conn->query($q2);
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+echo "Name: " . $row["Name"].
+"<br /> Email : " . $row["Email"].
+"<br /> Address Line1 : " . $row["Address1"].
+"<br>Address Line2 : " . $row["Address2"]."<br/>";
+}
+}
+else
+echo "Not Found";
+}
+?>

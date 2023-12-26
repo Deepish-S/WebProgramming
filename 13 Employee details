@@ -1,0 +1,37 @@
+<html>
+<body>
+<form method="post" action ="">
+Employee Id <input type="text" name="eid" /><br/>
+Employee Name <input type="text" name="ename" /><br/>
+Designation <input type="text" name="designation" /><br/>
+Basic Pay <input type="text" name="bpay" /><br/>
+<input type="submit" name="submit" />
+</form>
+</body>
+</html>
+<?php
+$conn = new mysqli('localhost', 'root', '','sample');
+if(isset($_POST['submit']))
+{
+$id = $_POST['eid'];
+$n = $_POST['ename'];
+$des = $_POST['designation'];
+$bp = $_POST['bpay'];
+$DA = $bp * 0.04;
+$HRA = $bp * 0.10;
+$DEDUCTION = $bp * 0.18;
+$GROSSPAY = $bp + $DA + $HRA;
+if($conn)
+echo "MySQL is connected!<br/>";
+else
+echo "Error! ";
+$q1 = "insert into employee values('$id', '$n', '$des', '$bp');";
+if($conn -> query($q1))
+echo "Row Inserted!<br />";
+else
+echo "Insertion error! ";
+echo "Employee Name : ".$n."<br>Empolyee id : ".$id."<br>Designation :
+".$des."<br>Basic Pay : ".$bp."<br><br> DA : ".$DA."<br>HRA : ".$HRA."<br>Deduction :
+".$DEDUCTION."<br>Gross Pay : ".$GROSSPAY."<br><br>";
+}
+?>
